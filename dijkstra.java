@@ -5,21 +5,68 @@ import java.util.*;
  * CS 224
  */
 public class dijkstra
- {
-    private static int node_num = 8;
+{
+   // got information about making an adjacency list with an arraylist and a linkedlist from
+   // https://stackoverflow.com/questions/14783831/java-implementation-of-adjacency-list
+   private static ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>>();
+   private static int inf = 9999;
+   private static int num_of_nodes = 8;
 
-    // got information about making an adjacency list with an arraylist and a linkedlist from
-    // https://stackoverflow.com/questions/14783831/java-implementation-of-adjacency-list
-    private static ArrayList<LinkedList<Integer>> G = new ArrayList<LinkedList<Integer>>();
-    public static void main(String[]args)
-    {
-    }
+   public static void main(String[]args)
+   {
+      System.out.println("Graph is represented using an edge list with an edge being an ArrayList (x,y,z) meaning there is a directed edge from x to y with a weight of z.");
+      graph = make_graph();
+   }
+
+   public static int extract_min()
+   {
+      return 0;
+      
+   }
 
 
-       /**
-     * makes the tree, does not take input, returns the tree 
-     */
-    public static ArrayList<ArrayList<Integer>> make_tree()
+   public static int change_key()
+   {
+      return 0;
+      
+   }
+
+   public static int run_dijkstra(ArrayList<ArrayList<Integer>>graph, int s)
+   {
+      ArrayList<Integer> Q = new ArrayList<Integer>();
+      for( int i=0; i<num_of_nodes; i++)
+      {
+         Q.add(inf);
+      }
+
+      // update distance to s to be zero
+
+      Q.set(s-1, 0);
+
+      // S = minimum orinted binary heap
+
+
+      int v;
+      while(Q.size()!=0)
+      {
+         v = extract_min();
+         S.add(v);
+
+         //for each edge v,w where 
+
+      }
+      return s;
+   }
+
+   public static boolean w_in_S(int v, int w, int S)
+   {
+      return true;
+   }
+
+   /**
+   * makes the tree, does not take input, returns the tree 
+   */
+    public static ArrayList<ArrayList<Integer>> make_graph()
     {
 
       ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>>();
@@ -131,8 +178,8 @@ public class dijkstra
       graph.add(edge14);
       graph.add(edge15);
 
-        return graph;
-    }
+      return graph;
+   }
    
    
    
