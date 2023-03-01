@@ -144,32 +144,29 @@ public class dijkstra
                   // this updates the distance of w in Q
                   change_key( Q, dest, dest.get_distance());
 
-                  dest.get_pred().add(e.get_source());
+                  dest.set_pred(e.get_source());
                }
             }
          }
+         node m = v;
 
-         for(node n : v.get_pred())
+         ArrayList<node> path = new ArrayList<node>();
+         while(v.get_pred() != null)
          {
-            System.out.print(n.get_name() + " - ");
-            //System.out.println(n.get_pred().get())
+            path.add(v.get_pred());
+            v = v.get_pred();
          }
 
-         System.out.println(v.get_name());
+
+         for(int i = path.size()-1; i >= 0; i--)
+         {
+            System.out.print(path.get(i).get_name() + " - ");
+         }
+
+         
+         System.out.println(m.get_name());
 
       }
-
-/*       System.out.println();
-
-        
-         node n = n5.get_pred().get(n5.get_pred().size()-1);
-         
-         if(n.get_pred().size() != 0)
-         {
-            System.out.print(n.get_pred().get(0).get_name() + " - ");
-         }
-         System.out.print(n.get_name() + " - ");
-         System.out.print(n5.get_name()); */
 
 
       System.out.println();

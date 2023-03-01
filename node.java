@@ -3,13 +3,13 @@ import java.util.*;
 public class node {
     private String name;
     private int distance;
-    private ArrayList<node> pred;
+    private node pred;
 
     public node(String name, int distance)
     {
         this.name = name;
         this.distance = distance;
-        pred = new ArrayList<node>();
+        pred = null;
     }
 
     public int get_distance()
@@ -27,14 +27,14 @@ public class node {
         return name;
     }
 
-    public ArrayList<node> get_pred()
+    public node get_pred()
     {
         return pred;
     }
 
     public void set_pred(node n)
     {
-        pred.add(n);
+        pred = n;
     }
 
 
