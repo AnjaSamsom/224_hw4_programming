@@ -136,10 +136,8 @@ public class dijkstra
            if(a.get_name() != "s")
            {
             path.add(0, a.get_pred().get(0));
-
            }
          }
-
 
          for( node n : path)
          {
@@ -147,12 +145,9 @@ public class dijkstra
          }
          System.out.println(v.get_name());
 
-
-
          // for each edge e = (v,w), such that w is not in S
          for(edge e : graph)
          {
-
             node source = e.get_source();
             node dest = e.get_destination();
             boolean w_in_Q = in_Q(Q, dest);
@@ -190,9 +185,6 @@ public class dijkstra
     {
 
       ArrayList<edge> graph = new ArrayList<edge>();
-
-
-
       graph.add(new edge(ns,n2,9));
       graph.add(new edge(ns, n4, 14));
       graph.add(new edge(ns, n3, 15));
@@ -211,10 +203,4 @@ public class dijkstra
 
       return graph;
    }
-   
-   
-   
-   
-   
-   
 }
