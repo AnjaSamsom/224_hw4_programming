@@ -1,5 +1,6 @@
-import java.util.*;
-
+/**
+ * node class that I made
+ */
 public class node {
     private String name;
     private int distance;

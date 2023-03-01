@@ -1,3 +1,7 @@
+/**
+ * edge class that I made
+ * each edge has two nodes, source and destination
+ */
 public class edge {
     private node source;
     private node destination;
