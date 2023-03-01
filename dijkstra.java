@@ -7,8 +7,6 @@ import java.util.*;
  */
 public class dijkstra
 {
-   // got information about making an adjacency list with an arraylist and a linkedlist from
-   // https://stackoverflow.com/questions/14783831/java-implementation-of-adjacency-list
    private static ArrayList<edge> graph = new ArrayList<edge>();
    private static int inf = 9999;
    public static node ns = new node("s", 0);
