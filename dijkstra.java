@@ -2,7 +2,7 @@ import java.util.*;
 
 
 /**
- * Anja Samsom HW 2 Programming
+ * Anja Samsom HW 4 Programming
  * CS 224
  */
 public class dijkstra
@@ -22,7 +22,8 @@ public class dijkstra
 
    public static void main(String[]args)
    {
-      System.out.println("Graph is represented using an edge list with an edge being an ArrayList (x,y,z) meaning there is a directed edge from x to y with a weight of z.");
+      System.out.println("Graph is represented using an ArrayList of edge objects that I made\n");
+      
       graph = make_graph();
       ArrayList<node> S = run_dijkstra(graph, ns);
    }
@@ -48,10 +49,6 @@ public class dijkstra
       // minimum oriented binary heap is Q
       // https://stackoverflow.com/questions/58714930/priority-queue-min-heap-ordering-in-java
       // https://docs.oracle.com/javase/7/docs/api/java/util/PriorityQueue.html
-
-
-
-
       Comparator<node> result = new Comparator<node>() {
          @Override
          public int compare(node n1, node n2){
@@ -103,28 +100,16 @@ public class dijkstra
       ArrayList<node> S = new ArrayList<node>();
 
       // predecessor list
-      ArrayList<node> T = new ArrayList<node>();
-      T.add(s);
+
 
 
       while(Q.size() != 0)
       {
          // v is equal to the min of Q
          node v = extract_min(Q);
-         String name = v.get_name();
-
          // add v to S
          S.add(v);
          System.out.print("Node " + v.get_name() + " included in S with the shortest path length " + v.get_distance() +  " :  ");
-         //v.set_pred(s);
-
-
-         // keep track of predecessors
-         if(v != s)
-         {
-            T.add(v);
-         }
-
 
          // for each edge e = (v,w), such that w is not in S
          for(edge e : graph)
@@ -140,7 +125,6 @@ public class dijkstra
                {
                   // distance of w = distance to v + weight of edge e
                   dest.set_distance(v.get_distance() + e.get_weight());
-
                   // this updates the distance of w in Q
                   change_key( Q, dest, dest.get_distance());
 
@@ -148,8 +132,11 @@ public class dijkstra
                }
             }
          }
+
+         // m is holding the value of v while we change it
          node m = v;
 
+         // adding predecessors to the ArrayList path
          ArrayList<node> path = new ArrayList<node>();
          while(v.get_pred() != null)
          {
@@ -158,21 +145,18 @@ public class dijkstra
          }
 
 
+
+         // printing the ArrayList out in reverse
          for(int i = path.size()-1; i >= 0; i--)
          {
             System.out.print(path.get(i).get_name() + " - ");
          }
 
-         
+         // print the final node that we have reached
          System.out.println(m.get_name());
 
       }
-
-
       System.out.println();
-
-
-
       return S;
    }
 
