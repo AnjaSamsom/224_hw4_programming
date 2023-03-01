@@ -24,5 +24,10 @@ public class edge {
     {
         return destination;
     }
+
+    public String to_string()
+    {
+        return source + " - " + destination;
+    }
     
 }

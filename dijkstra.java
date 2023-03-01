@@ -25,11 +25,8 @@ public class dijkstra
       System.out.println("Graph is represented using an edge list with an edge being an ArrayList (x,y,z) meaning there is a directed edge from x to y with a weight of z.");
       graph = make_graph();
       ArrayList<node> S = run_dijkstra(graph, ns);
-      
-      for(node n : S )
-      {
-         System.out.println(n + " - ");
-      }
+
+
 
    }
 
@@ -55,6 +52,9 @@ public class dijkstra
       // https://stackoverflow.com/questions/58714930/priority-queue-min-heap-ordering-in-java
       // https://docs.oracle.com/javase/7/docs/api/java/util/PriorityQueue.html
 
+
+
+
       Comparator<node> result = new Comparator<node>() {
          @Override
          public int compare(node n1, node n2){
@@ -75,9 +75,9 @@ public class dijkstra
             }
          }
      };
-     PriorityQueue<node> Q = new PriorityQueue(8, result);     
+      PriorityQueue<node> Q = new PriorityQueue(8, result);     
      
-     // set distance to infinity
+      // set distance to infinity
       ns.set_distance(inf);
       n2.set_distance(inf);
       n3.set_distance(inf);
@@ -87,23 +87,40 @@ public class dijkstra
       n7.set_distance(inf);
       nt.set_distance(inf);
 
+      Q.add(ns);
+      Q.add(n2);
+      Q.add(n3);
+      Q.add(n4);
+      Q.add(n5);
+      Q.add(n6);
+      Q.add(n7);
+      Q.add(nt);
+
+
+
       // set the distance of node s to zero
       s.set_distance(0);
+
 
       // S is an empty list
       ArrayList<node> S = new ArrayList<node>();
 
       // predecessor list
       ArrayList<node> T = new ArrayList<node>();
+      T.add(s);
 
 
       while(Q.size() != 0)
       {
          // v is equal to the min of Q
          node v = extract_min(Q);
+         String name = v.get_name();
 
          // add v to S
          S.add(v);
+         System.out.print("Node " + v.get_name() + " included in S with the shortest path length " + v.get_distance() +  " :  ");
+         
+
 
          // keep track of predecessors
          if(v != s)
@@ -111,12 +128,35 @@ public class dijkstra
             T.add(v);
          }
 
+         ArrayList<node> path = new ArrayList<node>();
+
+         for(node a : v.get_pred())
+         {
+           path.add(a);
+           if(a.get_name() != "s")
+           {
+            path.add(0, a.get_pred().get(0));
+
+           }
+         }
+
+
+         for( node n : path)
+         {
+            System.out.print(n.get_name() + " - ");
+         }
+         System.out.println(v.get_name());
+
+
+
          // for each edge e = (v,w), such that w is not in S
          for(edge e : graph)
          {
+
             node source = e.get_source();
             node dest = e.get_destination();
             boolean w_in_Q = in_Q(Q, dest);
+
             if(source == v && w_in_Q)
             {
                // if distance to v + weight of edge e < distance to w
@@ -125,21 +165,14 @@ public class dijkstra
                   // distance of w = distance to v + weight of edge e
                   dest.set_distance(v.get_distance() + e.get_weight());
 
-                  // change_key(Q, w, distance of w)
                   // this updates the distance of w in Q
+                  change_key( Q, dest, dest.get_distance());
 
-
-
+                  dest.get_pred().add(source);
                }
-
             }
          }
-
-
       }
-
-
-
       return S;
    }
 
