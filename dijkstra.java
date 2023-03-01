@@ -25,9 +25,6 @@ public class dijkstra
       System.out.println("Graph is represented using an edge list with an edge being an ArrayList (x,y,z) meaning there is a directed edge from x to y with a weight of z.");
       graph = make_graph();
       ArrayList<node> S = run_dijkstra(graph, ns);
-
-
-
    }
 
 
@@ -119,7 +116,7 @@ public class dijkstra
          // add v to S
          S.add(v);
          System.out.print("Node " + v.get_name() + " included in S with the shortest path length " + v.get_distance() +  " :  ");
-         
+         //v.set_pred(s);
 
 
          // keep track of predecessors
@@ -128,22 +125,6 @@ public class dijkstra
             T.add(v);
          }
 
-         ArrayList<node> path = new ArrayList<node>();
-
-         for(node a : v.get_pred())
-         {
-           path.add(a);
-           if(a.get_name() != "s")
-           {
-            path.add(0, a.get_pred().get(0));
-           }
-         }
-
-         for( node n : path)
-         {
-            System.out.print(n.get_name() + " - ");
-         }
-         System.out.println(v.get_name());
 
          // for each edge e = (v,w), such that w is not in S
          for(edge e : graph)
@@ -163,20 +144,45 @@ public class dijkstra
                   // this updates the distance of w in Q
                   change_key( Q, dest, dest.get_distance());
 
-                  dest.get_pred().add(source);
+                  dest.get_pred().add(e.get_source());
                }
             }
          }
+
+         for(node n : v.get_pred())
+         {
+            System.out.print(n.get_name() + " - ");
+            //System.out.println(n.get_pred().get())
+         }
+
+         System.out.println(v.get_name());
+
       }
+
+/*       System.out.println();
+
+        
+         node n = n5.get_pred().get(n5.get_pred().size()-1);
+         
+         if(n.get_pred().size() != 0)
+         {
+            System.out.print(n.get_pred().get(0).get_name() + " - ");
+         }
+         System.out.print(n.get_name() + " - ");
+         System.out.print(n5.get_name()); */
+
+
+      System.out.println();
+
+
+
       return S;
    }
 
    public static boolean in_Q(PriorityQueue<node> Q, node w)
    {
-
       return Q.contains(w);
    }
-
 
    /**
    * makes the graph, does not take input, returns the tree 
